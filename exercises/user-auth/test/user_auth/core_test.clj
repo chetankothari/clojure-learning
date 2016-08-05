@@ -33,3 +33,13 @@
 
   (testing "returns true if bearer-type is Bearer"
       (is (is-bearer-algo? "Bearer"))))
+
+(deftest test-auth-attrs
+  (testing "returns vector with "" as value if Authorisation header is missing"
+      (is (= [""] (auth-attrs {}))))
+
+  (testing "returns vector with value [Bearer] for Authorisation header Bearer"
+      (is (= ["Bearer"] (auth-attrs {"Authorisation" "Bearer"}))))
+
+  (testing "returns vector with value [Bearer Token] for Authorisation header Bearer Token"
+      (is (= ["Bearer" "Token"] (auth-attrs {"Authorisation" "Bearer Token"})))))
