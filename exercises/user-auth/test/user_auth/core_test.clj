@@ -13,7 +13,7 @@
 
     (testing "returns false if Authorisation header does not have Algorithm type in it"
       (is (not (valid-user? user_tokens {"User-Name" "User1"
-                                         "Authorisation" "Bearer Token1"}))))
+                                         "Authorisation" "Token1"}))))
 
     (testing "returns false if Authorisation header is empty"
       (is (not (valid-user? user_tokens {"User-Name" "User1"
