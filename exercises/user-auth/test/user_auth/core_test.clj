@@ -26,3 +26,10 @@
     (testing "returns true if user and token exists in user_tokens"
       (is (valid-user? user_tokens {"User-Name" "User1"
                                     "Authorisation" "Bearer Token1"})))))
+
+(deftest test-is-bearer-algo?
+  (testing "returns false if bearer-type is not Bearer"
+      (is (not (is-bearer-algo? "Test-Type"))))
+
+  (testing "returns true if bearer-type is Bearer"
+      (is (is-bearer-algo? "Bearer"))))
