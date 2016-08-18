@@ -19,24 +19,24 @@
     direction))
 
 (defn change-position
-  [direction [xCod yCod]]
+  [direction [x-cod y-cod]]
   (case direction
-    \N [xCod (inc yCod)]
-    \S [xCod (dec yCod)]
-    \E [(inc xCod) yCod]
-    \W [(dec xCod) yCod]
+    \N [x-cod (inc y-cod)]
+    \S [x-cod (dec y-cod)]
+    \E [(inc x-cod) y-cod]
+    \W [(dec x-cod) y-cod]
     ))
 
 (defn navigate
-  [[xCod yCod direction] [instruction & rest]]
+  [[x-cod y-cod direction] [instruction & rest]]
   (if (not (empty? (str instruction)))
     (navigate
       (case instruction
-        \L [xCod yCod (str (turn-left (first direction)))]
-        \R [xCod yCod (str (turn-right (first direction)))]
-        \M (let [[nXCod nYCod] (change-position (first direction) [xCod yCod])] [nXCod nYCod direction])
-        [xCod yCod direction])
+        \L [x-cod y-cod (str (turn-left (first direction)))]
+        \R [x-cod y-cod (str (turn-right (first direction)))]
+        \M (let [[n-x-cod n-y-cod] (change-position (first direction) [x-cod y-cod])] [n-x-cod n-y-cod direction])
+        [x-cod y-cod direction])
       rest)
-    [xCod yCod direction]))
+    [x-cod y-cod direction]))
 
 
