@@ -29,10 +29,14 @@
 
 (defn navigate
   [[xCod yCod direction] [instruction & rest]]
-  (case instruction
-    \L [xCod yCod (turn-left direction)]
-    \R [xCod yCod (turn-right direction)]
-    \M (let [[nXCod nYCod] (change-position direction [xCod yCod])] (navigate [nXCod nYCod direction] rest))
+  (if (not (empty? (str instruction)))
+    (navigate
+      (case instruction
+        \L [xCod yCod (str (turn-left (first direction)))]
+        \R [xCod yCod (str (turn-right (first direction)))]
+        \M (let [[nXCod nYCod] (change-position (first direction) [xCod yCod])] [nXCod nYCod direction])
+        [xCod yCod direction])
+      rest)
     [xCod yCod direction]))
 
 

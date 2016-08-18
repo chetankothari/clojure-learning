@@ -4,10 +4,25 @@
 
 (deftest test-navigate
   (testing "Moves a grid forward"
-    (is (= [1 0 \E] (navigate [0 0 \E] "M"))))
+    (is (= [1 0 "E"] (navigate [0 0 "E"] "M"))))
+
+  (testing "Moves the mars rover from [0 0 N] to [1 1 E] for MRM"
+    (is (= [1 1 "E"] (navigate [0 0 "N"] "MRM"))))
+
+  (testing "Moves the mars rover from [0 2 W] to [1 1 S] for LMLMR"
+    (is (= [1 1 "S"] (navigate [0 2 "W"] "LMLMR"))))
+
+  (testing "Moves the mars rover from [0 2 W] to [1 1 S] for RRMRM"
+    (is (= [1 1 "S"] (navigate [0 2 "W"] "RRMRM"))))
+
+  (testing "Moves the mars rover from [0 2 W] to [5 -2 N] for LMMMMRRRMMMMML"
+    (is (= [5 -2 "N"] (navigate [0 2 "W"] "LMMMMRRRMMMMML"))))
+
+  (testing "Moves the mars rover from [0 2 W] to [5 -2 N] for RRMMMMMRMMMMLL"
+    (is (= [5 -2 "N"] (navigate [0 2 "W"] "RRMMMMMRMMMMLL"))))
 
   (testing "Changes the direction of the rover for North to East"
-    (is (= [0 0 \E] (navigate [0 0 \N] "R")))))
+    (is (= [0 0 "E"] (navigate [0 0 "N"] "R")))))
 
 
 (deftest test-turn-left
